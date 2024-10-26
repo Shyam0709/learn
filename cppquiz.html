@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Fundamentals Quiz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+        
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+            margin-top: 20px;
+            font-size: 2.5rem;
+        }
+
+        .quiz-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .question-card {
+            background-color: #f0f4ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: scale(1.03);
+        }
+
+        .question-card p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            background-color: #e6ebff;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label:hover {
+            background-color: #d4dfff;
+        }
+
+        input[type="radio"]:checked + label {
+            background-color: #b5d0ff;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        .progress-container {
+            background-color: #e0e4e8;
+            border-radius: 8px;
+            height: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .progress-bar {
+            background-color: #4a90e2;
+            height: 100%;
+            width: 0;
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result.success {
+            background-color: #e0ffe5;
+            color: #2e7d32;
+        }
+
+        .result.fail {
+            background-color: #ffe0e0;
+            color: #d32f2f;
+        }
+
+        .question-counter {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+
+        .question-counter span {
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .question-card p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>C Programming Quiz</h1>
+
+<div class="quiz-container">
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="question-counter">
+        Question <span id="currentQuestion">1</span> of 10
+    </div>
+
+    <form id="quizForm">
+        <div class="question-card">
+            <p>1. What is the correct syntax for including a header file in C?</p>
+            <input type="radio" id="q1a" name="q1" value="a">
+            <label for="q1a">a) #include [stdio.h]</label>
+            <input type="radio" id="q1b" name="q1" value="b">
+            <label for="q1b">b) #include &lt;stdio.h&gt;</label>
+            <input type="radio" id="q1c" name="q1" value="c">
+            <label for="q1c">c) include &lt;stdio.h&gt;</label>
+            <input type="radio" id="q1d" name="q1" value="d">
+            <label for="q1d">d) #include "stdio.h"</label>
+        </div>
+
+        <div class="question-card">
+            <p>2. Which data type is used to create a variable that should store text in C?</p>
+            <input type="radio" id="q2a" name="q2" value="a">
+            <label for="q2a">a) char</label>
+            <input type="radio" id="q2b" name="q2" value="b">
+            <label for="q2b">b) string</label>
+            <input type="radio" id="q2c" name="q2" value="c">
+            <label for="q2c">c) char[]</label>
+            <input type="radio" id="q2d" name="q2" value="d">
+            <label for="q2d">d) text</label>
+        </div>
+
+        <div class="question-card">
+            <p>3. What is the result of 9 % 2 in C?</p>
+            <input type="radio" id="q3a" name="q3" value="a">
+            <label for="q3a">a) 1.5</label>
+            <input type="radio" id="q3b" name="q3" value="b">
+            <label for="q3b">b) 1</label>
+            <input type="radio" id="q3c" name="q3" value="c">
+            <label for="q3c">c) 2</label>
+            <input type="radio" id="q3d" name="q3" value="d">
+            <label for="q3d">d) 0</label>
+        </div>
+
+        <div class="question-card">
+            <p>4. How do you declare an integer variable in C?</p>
+            <input type="radio" id="q4a" name="q4" value="a">
+            <label for="q4a">a) int num;</label>
+            <input type="radio" id="q4b" name="q4" value="b">
+            <label for="q4b">b) num int;</label>
+            <input type="radio" id="q4c" name="q4" value="c">
+            <label for="q4c">c) int num = 0;</label>
+            <input type="radio" id="q4d" name="q4" value="d">
+            <label for="q4d">d) integer num;</label>
+        </div>
+
+        <div class="question-card">
+            <p>5. What is the purpose of the "return 0;" statement in a C program?</p>
+            <input type="radio" id="q5a" name="q5" value="a">
+            <label for="q5a">a) It stops the execution of the program</label>
+            <input type="radio" id="q5b" name="q5" value="b">
+            <label for="q5b">b) It returns 0 to the operating system</label>
+            <input type="radio" id="q5c" name="q5" value="c">
+            <label for="q5c">c) Both a and b</label>
+            <input type="radio" id="q5d" name="q5" value="d">
+            <label for="q5d">d) It prints 0 to the console</label>
+        </div>
+
+        <div class="question-card">
+            <p>6. Which function is used to print text to the console in C?</p>
+            <input type="radio" id="q6a" name="q6" value="a">
+            <label for="q6a">a) printf()</label>
+            <input type="radio" id="q6b" name="q6" value="b">
+            <label for="q6b">b) print()</label>
+            <input type="radio" id="q6c" name="q6" value="c">
+            <label for="q6c">c) echo()</label>
+            <input type="radio" id="q6d" name="q6" value="d">
+            <label for="q6d">d) output()</label>
+        </div>
+
+        <div class="question-card">
+            <p>7. How do you access the third element of an array in C?</p>
+            <input type="radio" id="q7a" name="q7" value="a">
+            <label for="q7a">a) array[3]</label>
+            <input type="radio" id="q7b" name="q7" value="b">
+            <label for="q7b">b) array[2]</label>
+            <input type="radio" id="q7c" name="q7" value="c">
+            <label for="q7c">c) array(2)</label>
+            <input type="radio" id="q7d" name="q7" value="d">
+            <label for="q7d">d) array{2}</label>
+        </div>
+
+        <div class="question-card">
+            <p>8. Which of the following is not a loop structure in C?</p>
+            <input type="radio" id="q8a" name="q8" value="a">
+            <label for="q8a">a) for</label>
+            <input type="radio" id="q8b" name="q8" value="b">
+            <label for="q8b">b) do-while</label>
+            <input type="radio" id="q8c" name="q8" value="c">
+            <label for="q8c">c) while</label>
+            <input type="radio" id="q8d" name="q8" value="d">
+            <label for="q8d">d) repeat-until</label>
+        </div>
+
+        <div class="question-card">
+            <p>9. What is the correct way to initialize an integer array with 5 elements in C?</p>
+            <input type="radio" id="q9a" name="q9" value="a">
+            <label for="q9a">a) int array[] = {1, 2, 3, 4, 5};</label>
+            <input type="radio" id="q9b" name="q9" value="b">
+            <label for="q9b">b) int array[5] = {1, 2, 3, 4, 5};</label>
+            <input type="radio" id="q9c" name="q9" value="c">
+            <label for="q9c">c) int array = [1, 2, 3, 4, 5];</label>
+            <input type="radio" id="q9d" name="q9" value="d">
+            <label for="q9d">d) array int[5] = {1, 2, 3, 4, 5};</label>
+        </div>
+
+        <div class="question-card">
+            <p>10. How do you comment a single line in C?</p>
+            <input type="radio" id="q10a" name="q10" value="a">
+            <label for="q10a">a) /* comment */</label>
+            <input type="radio" id="q10b" name="q10" value="b">
+            <label for="q10b">b) // comment</label>
+            <input type="radio" id="q10c" name="q10" value="c">
+            <label for="q10c">c) <!-- comment --></label>
+            <input type="radio" id="q10d" name="q10" value="d">
+            <label for="q10d">d) -- comment</label>
+        </div>
+
+        <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    const correctAnswers = ["b", "a", "b", "a", "c", "a", "b", "d", "b", "b"];
+
+    function submitQuiz() {
+        const form = document.forms["quizForm"];
+        let score = 0;
+
+        correctAnswers.forEach((answer, index) => {
+            const question = "q" + (index + 1);
+            const selectedAnswer = form[question].value;
+
+            if (selectedAnswer === answer) {
+                score++;
+            }
+        });
+
+        const result = document.getElementById("result");
+        result.style.display = "block";
+
+        if (score >= 8) {
+            result.classList.add("success");
+            result.classList.remove("fail");
+            result.innerHTML = `Excellent! You scored ${score} out of 10!`;
+        } else {
+            result.classList.add("fail");
+            result.classList.remove("success");
+            result.innerHTML = `You scored ${score} out of 10. Keep practicing!`;
+        }
+    }
+</script>
+
+</body>
+</html>
